@@ -1,86 +1,91 @@
-Summary:	Modular DocBook Stylesheets
+Summary:	Norman Walsh's modular stylesheets for DocBook
 Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
+Summary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
-%define		ver 1
-%define		subver 34
-Version:	%{ver}.%{subver}
+Version:	1.56.1
 Release:	1
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
-Group(de):	Applikationen/Publizieren/XML
-Group(pl):	Aplikacje/Publikowanie/XML
 Vendor:		Norman Walsh http://nwalsh.com/
-Source0:	http://nwalsh.com/docbook/xsl/dbx%{ver}%{subver}.zip
-Source1:	%{name}-pl.xml
-URL:		http://nwalsh.com/docbook/xsl/index.html
-# new url:
-# URL: http://docbook.sourceforge.net/
+Source0:	http://osdn.dl.sourceforge.net/sourceforge/docbook/docbook-xsl-%{version}.tar.gz
+URL:		http://docbook.sourceforge.net/projects/xsl/index.html
+BuildRequires:	/usr/bin/xmlcatalog
+Requires(post,postun): /usr/bin/xmlcatalog
+Requires(post,postun): /etc/xml/catalog
+Requires:	/etc/xml/catalog
 Requires:	sgml-common >= 0.5
-BuildArch:	noarch
 AutoReqProv:	0
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_javaclassdir	%{_datadir}/java/classes
+# think about _javaclassdir location
+#%define		_javaclassdir	%{_datadir}/java/classes
+%define xsl_path %{_datadir}/sgml/docbook/xsl-stylesheets
+%define catalog  %{xsl_path}/catalog.xml
 
 %description
-XSL is a stylesheet language for both print and online rendering.
-There is XSL stylesheets for DocBook DTD.
+Highly customizable XSL stylesheets for DocBook XML DTD. The
+stylesheets allow to produce documents in XSL FO, HTML or XHTML
+formats.
 
 %description -l pl
-docbook-xsl jest zbiorem arkuszy stylistycznych pozwalaj±cych
-przekszta³ciæ dokument napisany w DocBook DTD na prezentacjê
-on-line (wykorzystuj±c HTML) lub na drukowany dokument.
+Konfigurowalne arkusze stylistyczne dla DocBook XML DTD. Arkusze
+stylistyczne, zawarte w tym pakiecie, umo¿liwiaj± tworzenie dokumentów
+w formacie XSL FO, HTML lub XHTML.
+
+%description -l pt_BR
+Stylesheets modulares do Norman Walsh para DocBook.
 
 %prep
-%setup -q -c -T
-unzip -qa %{SOURCE0}
-mv docbook/* .
-rmdir docbook
-cp -f %{SOURCE1} common/pl.xml
+%setup -q -n docbook-xsl-%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} \
-	$RPM_BUILD_ROOT%{_javaclassdir}
+#install -d $RPM_BUILD_ROOT{%{xsl_path},%{_sysconfdir}/xml} \
+#	$RPM_BUILD_ROOT%{_javaclassdir}
+install -d $RPM_BUILD_ROOT{%{xsl_path},%{_sysconfdir}/xml}
 
-# remove indexing as it confuses xt :( /klakier
-grep -v '<xsl:include href="index.xsl"/>' html/docbook.xsl > html/xtdocbook.xsl
-grep -v '<xsl:include href="index.xsl"/>' fo/docbook.xsl > fo/xtdocbook.xsl
+cp -a * $RPM_BUILD_ROOT%{xsl_path}
 
-cp -a * $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} 
+#install extensions/*.jar $RPM_BUILD_ROOT%{_javaclassdir}
 
-install extensions/*.jar $RPM_BUILD_ROOT%{_javaclassdir}
+%xmlcat_create $RPM_BUILD_ROOT%{catalog}
+ 
+%xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl/%{version} file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
+%xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl/current file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
 
-gzip -9nf ChangeLog WhatsNew BUGS TODO README
+rm -rf $RPM_BUILD_ROOT%{xsl_path}/doc \
+	$RPM_BUILD_ROOT%{xsl_path}/BUGS \
+	$RPM_BUILD_ROOT%{xsl_path}/ChangeLog \
+	$RPM_BUILD_ROOT%{xsl_path}/README \
+	$RPM_BUILD_ROOT%{xsl_path}/RELEASE-NOTES.html \
+	$RPM_BUILD_ROOT%{xsl_path}/RELEASE-NOTES.xml \
+	$RPM_BUILD_ROOT%{xsl_path}/TODO \
+	$RPM_BUILD_ROOT%{xsl_path}/WhatsNew \
+	$RPM_BUILD_ROOT%{xsl_path}/extensions
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-ln -sfn xsl-stylesheets-%{version} %{_datadir}/sgml/docbook/xsl-stylesheets
-
-%preun
-if [ "$1" = "0" ]; then
-	rm -f %{_datadir}/sgml/docbook/xsl-stylesheets
+%pre 
+if [ -L %{xsl_path} ] ; then
+	rm -rf %{xsl_path}
 fi
 
+%post
+if ! grep -q %{catalog} /etc/xml/catalog ; then
+    %xmlcat_add %{catalog}
+
+fi 
+ 
+%preun
+if [ "$1" = "0" ] ; then
+    %xmlcat_del %{catalog}
+
+fi
 
 %files
 %defattr(644,root,root,755)
-%doc test doc *.gz
-%{_javaclassdir}/*
-%attr(755,root,root) %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/bin/*.pl
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/VERSION
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/common
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/contrib
-#%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/doc
-#%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/docsrc
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/extensions
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/fo
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/html
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/images
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/indexing
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/javahelp
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/lib
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/template
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/xhtml
+%doc doc ChangeLog WhatsNew BUGS TODO README RELEASE-NOTES.*
+#%{_javaclassdir}/*
+%{xsl_path}
