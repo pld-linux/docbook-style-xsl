@@ -7,7 +7,7 @@ Release:	1
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Vendor:		Norman Walsh http://nwalsh.com/
-Source0:	http://osdn.dl.sourceforge.net/sourceforge/docbook/docbook-xsl-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/sourceforge/docbook/docbook-xsl-%{version}.tar.gz
 # Source0-md5:	4a6ef24539930e19b2b023bf98ca98ea
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 BuildRequires:	/usr/bin/xmlcatalog
