@@ -11,6 +11,7 @@ Group(de):	Applikationen/Publizieren/XML
 Group(pl):	Aplikacje/Publikowanie/XML
 Vendor:		Norman Walsh http://nwalsh.com/
 Source0:	http://nwalsh.com/docbook/xsl/dbx%{ver}%{subver}.zip
+Source1:	%{name}-pl.xml
 URL:		http://nwalsh.com/docbook/xsl/index.html
 Requires:	sgml-common >= 0.5
 BuildArch:	noarch
@@ -33,6 +34,7 @@ on-line (wykorzystuj±c HTML) lub na drukowany dokument.
 unzip -qa %{SOURCE0}
 mv docbook/* .
 rmdir docbook
+cp -f %{SOURCE1} common/pl.xml
 
 %install
 rm -rf $RPM_BUILD_ROOT
