@@ -1,4 +1,3 @@
-
 Summary:	XSL stylesheets for DocBook XML DTD
 Summary(pl):	Arkusze stylistyczne XSL dla DocBook XML DTD
 Name:		docbook-style-xsl
@@ -9,10 +8,11 @@ Group:		Applications/Publishing/XML
 Vendor:		Norman Walsh http://nwalsh.com/
 Source0:	http://telia.dl.sourceforge.net/docbook/docbook-xsl-%{version}.tar.gz
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
-Requires(post):	/usr/bin/xmlcatalog
-Requires(preun):	/usr/bin/xmlcatalog
-BuildArch:	noarch
+BuildRequires:	libxml2-progs /usr/bin/xmlcatalog
+Requires(post,preun):	/usr/bin/xmlcatalog
+Requires:	libxml2
 AutoReqProv:	0
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define xsl_path %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}
