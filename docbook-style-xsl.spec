@@ -3,7 +3,7 @@ Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
 Version:	1.55.0
-Release:	1
+Release:	2
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Vendor:		Norman Walsh http://nwalsh.com/
@@ -19,11 +19,10 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # think about _javaclassdir location
-%define		_javaclassdir	%{_datadir}/java/classes
+#%define		_javaclassdir	%{_datadir}/java/classes
 %define xsl_path %{_datadir}/sgml/docbook/xsl-stylesheets
 %define catalog  %{xsl_path}/catalog.xml
 # please look into docbook-dtd42-xml.spec
-%define xmlcat_add_rewrite()  /usr/bin/xmlcatalog --noout --add rewriteSystem %1 %2 %3
 %define xmlcat_create()       /usr/bin/xmlcatalog --noout --create %1
 
 %description
@@ -44,12 +43,13 @@ Stylesheets modulares do Norman Walsh para DocBook.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{xsl_path},%{_sysconfdir}/xml} \
-	$RPM_BUILD_ROOT%{_javaclassdir}
+#install -d $RPM_BUILD_ROOT{%{xsl_path},%{_sysconfdir}/xml} \
+#	$RPM_BUILD_ROOT%{_javaclassdir}
+install -d $RPM_BUILD_ROOT{%{xsl_path},%{_sysconfdir}/xml}
 
 cp -a * $RPM_BUILD_ROOT%{xsl_path}
 
-install extensions/*.jar $RPM_BUILD_ROOT%{_javaclassdir}
+#install extensions/*.jar $RPM_BUILD_ROOT%{_javaclassdir}
 
 %xmlcat_create $RPM_BUILD_ROOT%{catalog}
  
@@ -63,7 +63,7 @@ rm -rf $RPM_BUILD_ROOT%{xsl_path}/doc \
 	$RPM_BUILD_ROOT%{xsl_path}/RELEASE-NOTES.xml \
 	$RPM_BUILD_ROOT%{xsl_path}/TODO \
 	$RPM_BUILD_ROOT%{xsl_path}/WhatsNew \
-
+	$RPM_BUILD_ROOT%{xsl_path}/extensions
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -75,16 +75,18 @@ fi
 
 %post
 if ! grep -q %{catalog} /etc/xml/catalog ; then
-	/usr/bin/xmlcatalog --noout --add nextCatalog "" %{catalog} /etc/xml/catalog
+    %xmlcat_add %{dtd_path}/catalog.xml
+
 fi 
  
 %preun
 if [ "$1" = "0" ] ; then
-	/usr/bin/xmlcatalog --noout --del %{catalog} /etc/xml/catalog
+    %xmlcat_del %{dtd_path}/catalog.xml
+
 fi
 
 %files
 %defattr(644,root,root,755)
 %doc doc ChangeLog WhatsNew BUGS TODO README RELEASE-NOTES.*
-%{_javaclassdir}/*
+#%{_javaclassdir}/*
 %{xsl_path}
