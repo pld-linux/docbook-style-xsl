@@ -10,7 +10,7 @@ Group:		Applications/Publishing/XML
 Source0:	http://dl.sourceforge.net/docbook/docbook-xsl-%{version}.tar.gz
 # Source0-md5:	2f7d446de5523ec34a19ccbe8caf387f
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
-BuildRequires:	/usr/bin/xmlcatalog
+BuildRequires:	libxml2-progs
 Requires(post,postun):	/usr/bin/xmlcatalog
 Requires(post,postun):	/etc/xml/catalog
 Requires:	/etc/xml/catalog
