@@ -7,10 +7,6 @@ Version:	1.48
 Release:	1
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
-Group(de):	Applikationen/Publizieren/XML
-Group(es):	Aplicaciones/Editoración/XML
-Group(pl):	Aplikacje/Publikowanie/XML
-Group(pt_BR):	Aplicações/Editoração/XML
 Vendor:		Norman Walsh http://nwalsh.com/
 Source0:	http://prdownloads.sourceforge.net/docbook/docbook-xsl-%{version}.tar.gz
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
