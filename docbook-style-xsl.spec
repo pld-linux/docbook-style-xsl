@@ -2,7 +2,7 @@ Summary:	Modular DocBook Stylesheets
 Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
 Name:		docbook-style-xsl
 %define		ver 1
-%define		subver 29
+%define		subver 31
 Version:	%{ver}.%{subver}
 Release:	5
 Copyright:	(C) 1997, 1998 Norman Walsh (Free)
