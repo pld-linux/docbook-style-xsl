@@ -38,19 +38,27 @@ Stylesheets modulares do Norman Walsh para DocBook.
 
 %package xalan-extensions
 Summary:	DocBook Xalan extensions
+Summary(pl):	Rozszerzenia DocBook Xalan
 Group:		Applications/Publishing/XML
 Requires:	xalan-j
 
 %description xalan-extensions
 DocBook Xalan extensions.
 
+%description xalan-extensions -l pl
+Rozszerzenia DocBook Xalan.
+
 %package saxon-extensions
 Summary:	DocBook Saxon extensions
+Summary(pl):	Rozszerzenia DocBook Saxon
 Group:		Applications/Publishing/XML
 Requires:	saxon
 
 %description saxon-extensions
 DocBook Saxon extensions.
+
+%description saxon-extensions -l pl
+Rozszerzenia DocBook Saxon.
 
 %prep
 %setup -q -n docbook-xsl-%{version}
