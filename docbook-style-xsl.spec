@@ -5,9 +5,9 @@ Name:		docbook-style-xsl
 Version:	1.61.3
 Release:	2
 License:	(C) 1997, 1998 Norman Walsh (Free)
-Group:		Applications/Publishing/XML
 Vendor:		Norman Walsh http://nwalsh.com/
-Source0:	http://dl.sourceforge.net/sourceforge/docbook/docbook-xsl-%{version}.tar.gz
+Group:		Applications/Publishing/XML
+Source0:	http://dl.sourceforge.net/docbook/docbook-xsl-%{version}.tar.gz
 # Source0-md5:	dc91b494e0afc586482c17e9373c0c56
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 BuildRequires:	/usr/bin/xmlcatalog
