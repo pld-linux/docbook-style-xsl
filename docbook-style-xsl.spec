@@ -22,8 +22,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 #%define		_javaclassdir	%{_datadir}/java/classes
 %define xsl_path %{_datadir}/sgml/docbook/xsl-stylesheets
 %define catalog  %{xsl_path}/catalog.xml
-# please look into docbook-dtd42-xml.spec
-%define xmlcat_create()       /usr/bin/xmlcatalog --noout --create %1
 
 %description
 Highly customizable XSL stylesheets for DocBook XML DTD. The
