@@ -17,6 +17,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildArch:	noarch
 AutoReqProv:    0
 
+%define		_javaclassdir	%{_datadir}/java/classes
+
 # do weryfikacji:
 
 #XSL is a stylesheet language for both print and online rendering.
@@ -39,6 +41,8 @@ rmdir docbook
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} 
+install -d $RPM_BUILD_ROOT%{_javaclassdir}
+
 
 # remove indexing as it confuses xt :( /klakier
 grep -v '<xsl:include href="index.xsl"/>' html/docbook.xsl > html/docbook.xsl.tmp
@@ -47,6 +51,10 @@ grep -v '<xsl:include href="index.xsl"/>' fo/docbook.xsl > fo/docbook.xsl.tmp
 mv -f fo/docbook.xsl.tmp fo/docbook.xsl
 
 cp -a * $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} 
+
+install extensions/*.jar $RPM_BUILD_ROOT%{_javaclassdir}
+
+
 
 gzip -9nf ChangeLog WhatsNew BUGS TODO README
 
@@ -65,6 +73,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc test doc {ChangeLog,WhatsNew,BUGS,TODO,README}.gz
+%{_javaclassdir}/*
 %attr(755,root,root) %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/bin/*.pl
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/VERSION
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/common
