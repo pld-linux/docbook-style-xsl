@@ -15,7 +15,7 @@ Requires(post,postun):	/usr/bin/xmlcatalog
 Requires(post,postun):	/etc/xml/catalog
 Requires:	/etc/xml/catalog
 Requires:	sgml-common >= 0.5
-AutoReqProv:	0
+AutoReqProv:	no
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
