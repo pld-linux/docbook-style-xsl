@@ -3,8 +3,8 @@ Summary(es):	Norman Walsh's modular stylesheets for DocBook
 Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
-Version:	1.50.0
-Release:	2
+Version:	1.54.1
+Release:	1
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Vendor:		Norman Walsh http://nwalsh.com/
@@ -38,48 +38,50 @@ Stylesheets modulares do Norman Walsh para DocBook.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} \
+install -d $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets \
 	$RPM_BUILD_ROOT%{_javaclassdir}
 
-cp -a * $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}
+cp -a * $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets
 
 install extensions/*.jar $RPM_BUILD_ROOT%{_javaclassdir}
 
-gzip -9nf ChangeLog WhatsNew BUGS TODO README
+rm -rf $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets/doc \
+	$RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets/BUGS \
+	$RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets/ChangeLog \
+	$RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets/README \
+	$RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets/RELEASE-NOTES.html \
+	$RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets/RELEASE-NOTES.xml \
+	$RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets/TODO \
+	$RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets/WhatsNew \
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-ln -sfn xsl-stylesheets-%{version} %{_datadir}/sgml/docbook/xsl-stylesheets
-
-%preun
-if [ "$1" = "0" ]; then
-	rm -f %{_datadir}/sgml/docbook/xsl-stylesheets
+%pre 
+if [ -L %{_datadir}/sgml/docbook/xsl-stylesheets ] ; then
+	rm -rf %{_datadir}/sgml/docbook/xsl-stylesheets
 fi
 
 
 %files
 %defattr(644,root,root,755)
-%doc doc *.gz
+%doc doc ChangeLog WhatsNew BUGS TODO README RELEASE-NOTES.*
 %{_javaclassdir}/*
-%dir %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}
-### %attr(755,root,root) %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/bin/*.pl
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/VERSION
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/common
-#%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/contrib
-#%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/doc
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/docsrc
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/extensions
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/fo
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/html
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/htmlhelp
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/images
-#%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/indexing
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/javahelp
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/lib
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/params
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/profiling
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/template
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/tools
-%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/xhtml
+%dir %{_datadir}/sgml/docbook/xsl-stylesheets
+%{_datadir}/sgml/docbook/xsl-stylesheets/VERSION
+%{_datadir}/sgml/docbook/xsl-stylesheets/common
+%{_datadir}/sgml/docbook/xsl-stylesheets/docsrc
+%{_datadir}/sgml/docbook/xsl-stylesheets/extensions
+%{_datadir}/sgml/docbook/xsl-stylesheets/fo
+%{_datadir}/sgml/docbook/xsl-stylesheets/html
+%{_datadir}/sgml/docbook/xsl-stylesheets/htmlhelp
+%{_datadir}/sgml/docbook/xsl-stylesheets/images
+%{_datadir}/sgml/docbook/xsl-stylesheets/javahelp
+%{_datadir}/sgml/docbook/xsl-stylesheets/lib
+%{_datadir}/sgml/docbook/xsl-stylesheets/params
+%{_datadir}/sgml/docbook/xsl-stylesheets/profiling
+%{_datadir}/sgml/docbook/xsl-stylesheets/template
+%{_datadir}/sgml/docbook/xsl-stylesheets/tools
+%{_datadir}/sgml/docbook/xsl-stylesheets/xhtml
+%{_datadir}/sgml/docbook/xsl-stylesheets/manpages
