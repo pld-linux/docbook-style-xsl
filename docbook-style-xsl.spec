@@ -7,30 +7,26 @@ Version:	%{ver}.%{subver}
 Release:	5
 Copyright:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
+Group(de):	Applikationen/Publizieren/XML
 Group(pl):	Aplikacje/Publikowanie/XML
 Vendor:		Norman Walsh http://nwalsh.com/
 Source0:	http://nwalsh.com/docbook/xsl/dbx%{ver}%{subver}.zip
 URL:		http://nwalsh.com/docbook/xsl/index.html
 Requires:	sgml-common >= 0.5
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-#BuildRequires:	perl
 BuildArch:	noarch
-AutoReqProv:    0
+AutoReqProv:	0
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_javaclassdir	%{_datadir}/java/classes
 
-# do weryfikacji:
-
-#XSL is a stylesheet language for both print and online rendering.
-#There is XSL stylesheets for DocBook DTD.
-
-#docbook-xsl jest zbiorem arkuszy stylistycznych pozwalaj±cych
-#przekszta³ciæ dokument napisany w DocBook DTD na prezentacjê
-#on-line (wykorzystuj±c HTML) lub na drukowany dokument.
-
 %description
+XSL is a stylesheet language for both print and online rendering.
+There is XSL stylesheets for DocBook DTD.
 
 %description -l pl
+docbook-xsl jest zbiorem arkuszy stylistycznych pozwalaj±cych
+przekszta³ciæ dokument napisany w DocBook DTD na prezentacjê
+on-line (wykorzystuj±c HTML) lub na drukowany dokument.
 
 %prep
 %setup -q -c -T
@@ -40,9 +36,8 @@ rmdir docbook
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} 
-install -d $RPM_BUILD_ROOT%{_javaclassdir}
-
+install -d $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} \
+	$RPM_BUILD_ROOT%{_javaclassdir}
 
 # remove indexing as it confuses xt :( /klakier
 grep -v '<xsl:include href="index.xsl"/>' html/docbook.xsl > html/xtdocbook.xsl
@@ -51,8 +46,6 @@ grep -v '<xsl:include href="index.xsl"/>' fo/docbook.xsl > fo/xtdocbook.xsl
 cp -a * $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} 
 
 install extensions/*.jar $RPM_BUILD_ROOT%{_javaclassdir}
-
-
 
 gzip -9nf ChangeLog WhatsNew BUGS TODO README
 
@@ -63,14 +56,14 @@ rm -rf $RPM_BUILD_ROOT
 ln -sfn xsl-stylesheets-%{version} %{_datadir}/sgml/docbook/xsl-stylesheets
 
 %preun
-if [ "$1" = 0 ]; then
-rm -f %{_datadir}/sgml/docbook/xsl-stylesheets
+if [ "$1" = "0" ]; then
+	rm -f %{_datadir}/sgml/docbook/xsl-stylesheets
 fi
 
 
 %files
 %defattr(644,root,root,755)
-%doc test doc {ChangeLog,WhatsNew,BUGS,TODO,README}.gz
+%doc test doc *.gz
 %{_javaclassdir}/*
 %attr(755,root,root) %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/bin/*.pl
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/VERSION
