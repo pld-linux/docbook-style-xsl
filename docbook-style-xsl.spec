@@ -4,8 +4,8 @@ Name:		docbook-style-xsl
 %define		ver 1
 %define		subver 31
 Version:	%{ver}.%{subver}
-Release:	5
-Copyright:	(C) 1997, 1998 Norman Walsh (Free)
+Release:	1
+License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Group(de):	Applikationen/Publizieren/XML
 Group(pl):	Aplikacje/Publikowanie/XML
