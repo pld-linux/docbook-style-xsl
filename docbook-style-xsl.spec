@@ -52,7 +52,7 @@ gzip -9nf ChangeLog WhatsNew BUGS TODO README
 rm -rf $RPM_BUILD_ROOT
 
 %post
-ln -sf xsl-stylesheets-%{version} %{_datadir}/sgml/docbook/xsl-stylesheets
+ln -sfn xsl-stylesheets-%{version} %{_datadir}/sgml/docbook/xsl-stylesheets
 
 %preun
 rm -f %{_datadir}/sgml/docbook/xsl-stylesheets
