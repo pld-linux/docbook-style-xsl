@@ -73,7 +73,7 @@ cp -a * $RPM_BUILD_ROOT%{xsl_path}
 install extensions/*.jar $RPM_BUILD_ROOT%{_javalibdir}
 
 %xmlcat_create $RPM_BUILD_ROOT%{catalog}
- 
+
 %xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl/%{version} file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
 %xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl/current file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
 
@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT%{xsl_path}/doc \
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%pre 
+%pre
 if [ -L %{xsl_path} ] ; then
 	rm -rf %{xsl_path}
 fi
@@ -99,8 +99,8 @@ fi
 if ! grep -q %{catalog} /etc/xml/catalog ; then
     %xmlcat_add %{catalog}
 
-fi 
- 
+fi
+
 %preun
 if [ "$1" = "0" ] ; then
     %xmlcat_del %{catalog}
