@@ -2,7 +2,7 @@ Summary:	Modular DocBook Stylesheets
 Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
 Name:		docbook-style-xsl
 Version:	1.45
-Release:	1
+Release:	2
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Group(de):	Applikationen/Publizieren/XML
@@ -58,7 +58,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc test doc *.gz
+%doc doc *.gz
 %{_javaclassdir}/*
 %dir %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}
 ### %attr(755,root,root) %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/bin/*.pl
