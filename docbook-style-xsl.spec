@@ -3,7 +3,7 @@ Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
 Version:	1.61.3
-Release:	1
+Release:	2
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Vendor:		Norman Walsh http://nwalsh.com/
@@ -19,10 +19,9 @@ AutoReqProv:	0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-# think about _javaclassdir location
-#%define		_javaclassdir	%{_datadir}/java/classes
-%define xsl_path %{_datadir}/sgml/docbook/xsl-stylesheets
-%define catalog  %{xsl_path}/catalog.xml
+%define	_javalibdir	%{_datadir}/java
+%define xsl_path	%{_datadir}/sgml/docbook/xsl-stylesheets
+%define catalog		%{xsl_path}/catalog.xml
 
 %description
 Highly customizable XSL stylesheets for DocBook XML DTD. The
@@ -37,18 +36,33 @@ w formacie XSL FO, HTML lub XHTML.
 %description -l pt_BR
 Stylesheets modulares do Norman Walsh para DocBook.
 
+%package xalan-extensions
+Summary:	DocBook Xalan extensions
+Group:		Applications/Publishing/XML
+Requires:	xalan-j
+
+%description xalan-extensions
+DocBook Xalan extensions.
+
+%package saxon-extensions
+Summary:	DocBook Saxon extensions
+Group:		Applications/Publishing/XML
+Requires:	saxon
+
+%description saxon-extensions
+DocBook Saxon extensions.
+
 %prep
 %setup -q -n docbook-xsl-%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-#install -d $RPM_BUILD_ROOT{%{xsl_path},%{_sysconfdir}/xml} \
-#	$RPM_BUILD_ROOT%{_javaclassdir}
-install -d $RPM_BUILD_ROOT{%{xsl_path},%{_sysconfdir}/xml}
+install -d $RPM_BUILD_ROOT{%{xsl_path},%{_sysconfdir}/xml} \
+	$RPM_BUILD_ROOT%{_javalibdir}
 
 cp -a * $RPM_BUILD_ROOT%{xsl_path}
 
-#install extensions/*.jar $RPM_BUILD_ROOT%{_javaclassdir}
+install extensions/*.jar $RPM_BUILD_ROOT%{_javalibdir}
 
 %xmlcat_create $RPM_BUILD_ROOT%{catalog}
  
@@ -88,5 +102,12 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc doc ChangeLog WhatsNew BUGS TODO README RELEASE-NOTES.*
-#%%{_javaclassdir}/*
 %{xsl_path}
+
+%files xalan-extensions
+%defattr(644,root,root,755)
+%{_javalibdir}/xalan*.jar
+
+%files saxon-extensions
+%defattr(644,root,root,755)
+%{_javalibdir}/saxon*.jar
