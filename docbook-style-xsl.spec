@@ -11,8 +11,8 @@ Source0:	http://dl.sourceforge.net/sourceforge/docbook/docbook-xsl-%{version}.ta
 # Source0-md5:	dc91b494e0afc586482c17e9373c0c56
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 BuildRequires:	/usr/bin/xmlcatalog
-Requires(post,postun): /usr/bin/xmlcatalog
-Requires(post,postun): /etc/xml/catalog
+Requires(post,postun):	/usr/bin/xmlcatalog
+Requires(post,postun):	/etc/xml/catalog
 Requires:	/etc/xml/catalog
 Requires:	sgml-common >= 0.5
 AutoReqProv:	0
