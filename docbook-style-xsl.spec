@@ -73,13 +73,13 @@ fi
 
 %post
 if ! grep -q %{catalog} /etc/xml/catalog ; then
-    %xmlcat_add %{dtd_path}/catalog.xml
+    %xmlcat_add %{catalog}
 
 fi 
  
 %preun
 if [ "$1" = "0" ] ; then
-    %xmlcat_del %{dtd_path}/catalog.xml
+    %xmlcat_del %{catalog}
 
 fi
 
