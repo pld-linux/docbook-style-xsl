@@ -4,7 +4,7 @@ Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
 Version:	1.50.0
-Release:	1
+Release:	2
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Vendor:		Norman Walsh http://nwalsh.com/
@@ -69,13 +69,17 @@ fi
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/common
 #%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/contrib
 #%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/doc
-#%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/docsrc
+%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/docsrc
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/extensions
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/fo
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/html
+%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/htmlhelp
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/images
 #%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/indexing
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/javahelp
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/lib
+%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/params
+%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/profiling
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/template
+%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/tools
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/xhtml
