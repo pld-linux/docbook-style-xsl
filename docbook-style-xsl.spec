@@ -1,12 +1,12 @@
 Summary:	XSL stylesheets for DocBook XML DTD
 Summary(pl):	Arkusze stylistyczne XSL dla DocBook XML DTD
 Name:		docbook-style-xsl
-Version:	1.53.0
+Version:	1.54.1
 Release:	1
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Vendor:		Norman Walsh http://nwalsh.com/
-Source0:	http://telia.dl.sourceforge.net/docbook/docbook-xsl-%{version}.tar.gz
+Source0:	http://osdn.dl.sourceforge.net/sourceforge/docbook/docbook-xsl-%{version}.tar.gz
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 BuildRequires:	libxml2-progs /usr/bin/xmlcatalog
 Requires(post,preun):	/usr/bin/xmlcatalog
