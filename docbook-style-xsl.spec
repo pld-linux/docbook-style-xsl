@@ -4,7 +4,7 @@ Name:		docbook-style-xsl
 %define		ver 1
 %define		subver 29
 Version:	%{ver}.%{subver}
-Release:	1
+Release:	3
 Copyright:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Group(pl):	Aplikacje/Publikowanie/XML
@@ -43,6 +43,8 @@ install -d $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}
 # remove indexing as it confuses xt :( /klakier
 grep -v '<xsl:include href="index.xsl"/>' html/docbook.xsl > html/docbook.xsl.tmp
 mv -f html/docbook.xsl.tmp html/docbook.xsl
+grep -v '<xsl:include href="index.xsl"/>' fo/docbook.xsl > fo/docbook.xsl.tmp
+mv -f fo/docbook.xsl.tmp fo/docbook.xsl
 
 cp -a * $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} 
 
