@@ -1,7 +1,7 @@
 Summary:	Modular DocBook Stylesheets
 Summary(es):	Norman Walsh's modular stylesheets for DocBook
 Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
-ummary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
+Summary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
 Version:	1.45
 Release:	2
