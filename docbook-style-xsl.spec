@@ -45,7 +45,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} \
 grep -v '<xsl:include href="index.xsl"/>' html/docbook.xsl > html/xtdocbook.xsl
 grep -v '<xsl:include href="index.xsl"/>' fo/docbook.xsl > fo/xtdocbook.xsl
 
-cp -a * $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} 
+cp -a * $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}
 
 install extensions/*.jar $RPM_BUILD_ROOT%{_javaclassdir}
 
