@@ -13,6 +13,8 @@ Vendor:		Norman Walsh http://nwalsh.com/
 Source0:	http://nwalsh.com/docbook/xsl/dbx%{ver}%{subver}.zip
 Source1:	%{name}-pl.xml
 URL:		http://nwalsh.com/docbook/xsl/index.html
+# new url:
+# URL: http://docbook.sourceforge.net/
 Requires:	sgml-common >= 0.5
 BuildArch:	noarch
 AutoReqProv:	0
