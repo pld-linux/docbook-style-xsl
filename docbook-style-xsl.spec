@@ -1,12 +1,16 @@
 Summary:	Modular DocBook Stylesheets
+Summary(es):	Norman Walsh's modular stylesheets for DocBook
 Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
+ummary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
 Version:	1.45
 Release:	2
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Group(de):	Applikationen/Publizieren/XML
+Group(es):	Aplicaciones/Editoración/XML
 Group(pl):	Aplikacje/Publikowanie/XML
+Group(pt_BR):	Aplicações/Editoração/XML
 Vendor:		Norman Walsh http://nwalsh.com/
 Source0:	http://prdownloads.sourceforge.net/docbook/docbook-xsl-%{version}.tar.gz
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
@@ -21,10 +25,17 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 XSL is a stylesheet language for both print and online rendering.
 There is XSL stylesheets for DocBook DTD.
 
+%description -l es
+These XSL stylesheets allow to produce XSL FO trees or HTML / XHTML
+with any DocBook XML document. They are highly customizable.
+
 %description -l pl
 docbook-xsl jest zbiorem arkuszy stylistycznych pozwalaj±cych
-przekszta³ciæ dokument napisany w DocBook DTD na prezentacjê
-on-line (wykorzystuj±c HTML) lub na drukowany dokument.
+przekszta³ciæ dokument napisany w DocBook DTD na prezentacjê on-line
+(wykorzystuj±c HTML) lub na drukowany dokument.
+
+%description -l pt_BR
+Stylesheets modulares do Norman Walsh para DocBook.
 
 %prep
 %setup -q -n docbook-xsl-%{version}
