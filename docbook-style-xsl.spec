@@ -2,7 +2,7 @@ Summary:	Modular DocBook Stylesheets
 Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
 Name:		docbook-style-xsl
 %define		ver 1
-%define		subver 40
+%define		subver 41
 Version:	%{ver}.%{subver}
 Release:	1
 License:	(C) 1997, 1998 Norman Walsh (Free)
@@ -10,11 +10,9 @@ Group:		Applications/Publishing/XML
 Group(de):	Applikationen/Publizieren/XML
 Group(pl):	Aplikacje/Publikowanie/XML
 Vendor:		Norman Walsh http://nwalsh.com/
-Source0:	http://nwalsh.com/docbook/xsl/docbook-xsl-%{ver}.%{subver}.zip
+Source0:	http://prdownloads.sourceforge.net/docbook/docbook-xsl-%{ver}.%{subver}.tar.gz
 Source1:	%{name}-pl.xml
-URL:		http://nwalsh.com/docbook/xsl/index.html
-# new url:
-# URL: http://docbook.sourceforge.net/
+URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 Requires:	sgml-common >= 0.5
 BuildArch:	noarch
 AutoReqProv:	0
@@ -32,10 +30,7 @@ przekszta³ciæ dokument napisany w DocBook DTD na prezentacjê
 on-line (wykorzystuj±c HTML) lub na drukowany dokument.
 
 %prep
-%setup -q -c -T
-unzip -qa %{SOURCE0}
-mv docbook-xsl-1.40/* .
-rmdir docbook-xsl-1.40
+%setup -q -n docbook-xsl-%{version}
 cp -f %{SOURCE1} common/pl.xml
 
 %install
