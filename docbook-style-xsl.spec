@@ -4,14 +4,13 @@ Name:		docbook-style-xsl
 %define		ver 1
 %define		subver 41
 Version:	%{ver}.%{subver}
-Release:	1
+Release:	2
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Group(de):	Applikationen/Publizieren/XML
 Group(pl):	Aplikacje/Publikowanie/XML
 Vendor:		Norman Walsh http://nwalsh.com/
 Source0:	http://prdownloads.sourceforge.net/docbook/docbook-xsl-%{ver}.%{subver}.tar.gz
-Source1:	%{name}-pl.xml
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 Requires:	sgml-common >= 0.5
 BuildArch:	noarch
@@ -31,7 +30,6 @@ on-line (wykorzystuj±c HTML) lub na drukowany dokument.
 
 %prep
 %setup -q -n docbook-xsl-%{version}
-cp -f %{SOURCE1} common/pl.xml
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -64,6 +62,7 @@ fi
 %defattr(644,root,root,755)
 %doc test doc *.gz
 %{_javaclassdir}/*
+%dir %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}
 ### %attr(755,root,root) %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/bin/*.pl
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/VERSION
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/common
