@@ -5,6 +5,7 @@
 -->
 
 <gentext key="abstract"                 text="Abstrakt"/>
+<gentext key="answer" 			text="Odp:"/>
 <gentext key="appendix"                 text="Dodatek"/>
 <gentext key="article"                  text="Artyku&#322;"/>
 <gentext key="bibliography"             text="Bibliografia"/>
@@ -32,6 +33,7 @@
 <gentext key="preface"                  text="Przedmowa"/>
 <gentext key="procedure"                text="Procedura"/>
 <gentext key="published"                text="Data wydania"/>
+<gentext key="question"			text="Pyt:"/>
 <gentext key="refname"                  text="Nazwa"/>
 <gentext key="reference"                text="Materia&#322;y &#378;r&#243;d&#322;owe"/>
 <gentext key="revision"                 text="Zmiana"/>
