@@ -4,18 +4,16 @@ Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
 Version:	1.50.0
-Release:	1
+Release:	2
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Vendor:		Norman Walsh http://nwalsh.com/
 Source0:	http://prdownloads.sourceforge.net/docbook/docbook-xsl-%{version}.tar.gz
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
-Requires:	sgml-common >= 0.5
+Requires:	libxml2 >= 2.4.21-6
 BuildArch:	noarch
 AutoReqProv:	0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_javaclassdir	%{_datadir}/java/classes
 
 %description
 XSL is a stylesheet language for both print and online rendering.
@@ -43,28 +41,29 @@ install -d $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version} \
 
 cp -a * $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}
 
-install extensions/*.jar $RPM_BUILD_ROOT%{_javaclassdir}
-
-gzip -9nf ChangeLog WhatsNew BUGS TODO README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-ln -sfn xsl-stylesheets-%{version} %{_datadir}/sgml/docbook/xsl-stylesheets
+for f in fo html xhtml; do
+	%{_bindir}/xmlcatalog --noout --add rewriteSystem \
+		http://docbook.sourceforge.net/release/xsl/%{version}/$f/docbook.xsl \
+		file://%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/$f/docbook.xsl \
+		/etc/xml/catalog
+done
 
-%preun
-if [ "$1" = "0" ]; then
-	rm -f %{_datadir}/sgml/docbook/xsl-stylesheets
-fi
-
+%postun
+for f in fo html xhtml; do
+	%{_bindir}/xmlcatalog --noout --del \
+		http://docbook.sourceforge.net/release/xsl/%{version}/$f/docbook.xsl \
+		/etc/xml/catalog
+done
 
 %files
 %defattr(644,root,root,755)
-%doc doc *.gz
-%{_javaclassdir}/*
+%doc doc ChangeLog WhatsNew BUGS TODO README
 %dir %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}
-### %attr(755,root,root) %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/bin/*.pl
+#%attr(755,root,root) %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/bin/*.pl
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/VERSION
 %{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/common
 #%{_datadir}/sgml/docbook/xsl-stylesheets-%{version}/contrib
