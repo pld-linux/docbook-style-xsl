@@ -57,7 +57,9 @@ rm -rf $RPM_BUILD_ROOT
 ln -sfn xsl-stylesheets-%{version} %{_datadir}/sgml/docbook/xsl-stylesheets
 
 %preun
+if [ "$1" = 0 ]; then
 rm -f %{_datadir}/sgml/docbook/xsl-stylesheets
+fi
 
 
 %files
