@@ -3,7 +3,7 @@ Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
 Version:	1.68.1
-Release:	1
+Release:	2
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Vendor:		Norman Walsh http://nwalsh.com/
 Group:		Applications/Publishing/XML
@@ -11,8 +11,8 @@ Source0:	http://dl.sourceforge.net/docbook/docbook-xsl-%{version}.tar.bz2
 # Source0-md5:	f4985efbc0f3411af8106928f8752fc5
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 BuildRequires:	libxml2-progs
-Requires(post,postun):	/usr/bin/xmlcatalog
-Requires(post,postun):	/etc/xml/catalog
+Requires(pre,postun):	/usr/bin/xmlcatalog
+Requires(pre,postun):	/etc/xml/catalog
 Requires:	/etc/xml/catalog
 Requires:	sgml-common >= 0.5
 AutoReqProv:	no
@@ -98,13 +98,11 @@ fi
 %post
 if ! grep -q %{catalog} /etc/xml/catalog ; then
 	%xmlcat_add %{catalog}
-
 fi
 
 %preun
 if [ "$1" = "0" ] ; then
 	%xmlcat_del %{catalog}
-
 fi
 
 %files
