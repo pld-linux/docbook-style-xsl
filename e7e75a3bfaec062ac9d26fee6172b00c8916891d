@@ -1,0 +1,5 @@
+- fixed R:, release 2 for Th.
+
+  docbook-style-xsl ##################################################
+  /var/tmp/rpm-tmp.4068[4]: /usr/bin/xmlcatalog: not found
+  error: post(docbook-style-xsl-1.68.1-1.noarch) scriptlet failed, exit status 127
