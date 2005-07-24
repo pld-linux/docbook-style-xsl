@@ -2,17 +2,20 @@ Summary:	Norman Walsh's modular stylesheets for DocBook
 Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
-Version:	1.68.1
-Release:	2
+Version:	1.69.0
+Release:	1
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Vendor:		Norman Walsh http://nwalsh.com/
 Group:		Applications/Publishing/XML
 Source0:	http://dl.sourceforge.net/docbook/docbook-xsl-%{version}.tar.bz2
-# Source0-md5:	f4985efbc0f3411af8106928f8752fc5
+# Source0-md5:	a6bfd89f6a7d53f12bd6428c140e6744
+Source1:	http://dl.sourceforge.net/docbook/docbook-xsl-doc-%{version}.tar.bz2
+# Source1-md5:	1ba4135aefd817908ad067a5afae4f52
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 BuildRequires:	libxml2-progs
-Requires(pre,postun):	/usr/bin/xmlcatalog
-Requires(pre,postun):	/etc/xml/catalog
+# XXX: "pre," is workaround for some rpm problem???
+Requires(pre,post,postun):	/usr/bin/xmlcatalog
+Requires(pre,post,postun):	/etc/xml/catalog
 Requires:	/etc/xml/catalog
 Requires:	sgml-common >= 0.5
 AutoReqProv:	no
@@ -61,7 +64,7 @@ DocBook Saxon extensions.
 Rozszerzenia DocBook Saxon.
 
 %prep
-%setup -q -n docbook-xsl-%{version}
+%setup -q -n docbook-xsl-%{version} -b1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -107,7 +110,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc doc ChangeLog WhatsNew BUGS TODO README RELEASE-NOTES.*
+%doc doc AUTHORS BUGS COPYING ChangeLog NEWS README RELEASE-NOTES.{html,txt} TODO
 %{xsl_path}
 
 %files xalan-extensions
