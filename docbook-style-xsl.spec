@@ -2,19 +2,21 @@ Summary:	Norman Walsh's modular stylesheets for DocBook
 Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
-Version:	1.70.1
+Version:	1.71.0
 Release:	1
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Source0:	http://dl.sourceforge.net/docbook/docbook-xsl-%{version}.tar.bz2
-# Source0-md5:	91b61913747a181a0e54a8683f321348
+# Source0-md5:	42397442255e3c903b16d896446c3ce1
 Source1:	http://dl.sourceforge.net/docbook/docbook-xsl-doc-%{version}.tar.bz2
-# Source1-md5:	12518837b39ed3ed27894fca54d7ab6d
+# Source1-md5:	87a03301e48be05c8373c52e6728b971
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 BuildRequires:	libxml2-progs
-# XXX: "pre," is workaround for some rpm problem???
-Requires(pre,post,postun):	/usr/bin/xmlcatalog
-Requires(pre,post,postun):	/etc/xml/catalog
+BuildRequires:	unzip
+Requires(post,postun):	/usr/bin/xmlcatalog
+Requires(post,postun):	/etc/xml/catalog
+# workaround for rpm/poldek
+Requires:	libxml2-progs
 Requires:	/etc/xml/catalog
 Requires:	sgml-common >= 0.5
 AutoReqProv:	no
@@ -65,6 +67,8 @@ Rozszerzenia DocBook Saxon.
 %prep
 %setup -q -n docbook-xsl-%{version} -b1
 
+unzip ChangeHistory.xml.zip
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{xsl_path},%{_sysconfdir}/xml} \
@@ -109,7 +113,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc doc AUTHORS BUGS COPYING ChangeLog.xml NEWS README RELEASE-NOTES.{html,txt} TODO
+%doc doc AUTHORS BUGS COPYING ChangeHistory.xml NEWS README RELEASE-NOTES.{html,txt} TODO
 %{xsl_path}
 
 %files xalan-extensions
