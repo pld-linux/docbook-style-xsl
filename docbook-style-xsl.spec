@@ -1,6 +1,6 @@
 Summary:	Norman Walsh's modular stylesheets for DocBook
-Summary(pl):	Arkusze stylistyczne XSL dla DocBook DTD
-Summary(pt_BR):	Stylesheets modulares do Norman Walsh para DocBook
+Summary(pl.UTF-8):   Arkusze stylistyczne XSL dla DocBook DTD
+Summary(pt_BR.UTF-8):   Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
 Version:	1.72.0
 Release:	1
@@ -32,36 +32,36 @@ Highly customizable XSL stylesheets for DocBook XML DTD. The
 stylesheets allow to produce documents in XSL FO, HTML or XHTML
 formats.
 
-%description -l pl
+%description -l pl.UTF-8
 Konfigurowalne arkusze stylistyczne dla DocBook XML DTD. Arkusze
-stylistyczne, zawarte w tym pakiecie, umo¿liwiaj± tworzenie dokumentów
+stylistyczne, zawarte w tym pakiecie, umoÅ¼liwiajÄ… tworzenie dokumentÃ³w
 w formacie XSL FO, HTML lub XHTML.
 
-%description -l pt_BR
+%description -l pt_BR.UTF-8
 Stylesheets modulares do Norman Walsh para DocBook.
 
 %package xalan-extensions
 Summary:	DocBook Xalan extensions
-Summary(pl):	Rozszerzenia DocBook Xalan
+Summary(pl.UTF-8):   Rozszerzenia DocBook Xalan
 Group:		Applications/Publishing/XML
 Requires:	xalan-j
 
 %description xalan-extensions
 DocBook Xalan extensions.
 
-%description xalan-extensions -l pl
+%description xalan-extensions -l pl.UTF-8
 Rozszerzenia DocBook Xalan.
 
 %package saxon-extensions
 Summary:	DocBook Saxon extensions
-Summary(pl):	Rozszerzenia DocBook Saxon
+Summary(pl.UTF-8):   Rozszerzenia DocBook Saxon
 Group:		Applications/Publishing/XML
 Requires:	saxon
 
 %description saxon-extensions
 DocBook Saxon extensions.
 
-%description saxon-extensions -l pl
+%description saxon-extensions -l pl.UTF-8
 Rozszerzenia DocBook Saxon.
 
 %prep
