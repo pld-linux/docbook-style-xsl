@@ -2,14 +2,14 @@ Summary:	Norman Walsh's modular stylesheets for DocBook
 Summary(pl.UTF-8):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR.UTF-8):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
-Version:	1.73.0
+Version:	1.73.2
 Release:	1
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Source0:	http://dl.sourceforge.net/docbook/docbook-xsl-%{version}.tar.bz2
-# Source0-md5:	fd0e3199ffbeab7a34617d9789368abe
+# Source0-md5:	9640e7a1ef8662c195b4fec69a983e58
 Source1:	http://dl.sourceforge.net/docbook/docbook-xsl-doc-%{version}.tar.bz2
-# Source1-md5:	42db02526f9062ab16d172eb180537a2
+# Source1-md5:	d41ce59b783b60383cca765902a41039
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 BuildRequires:	libxml2-progs
 BuildRequires:	unzip
@@ -23,9 +23,9 @@ AutoReqProv:	no
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define	_javalibdir	%{_datadir}/java
-%define xsl_path	%{_datadir}/sgml/docbook/xsl-stylesheets
-%define catalog		%{xsl_path}/catalog.xml
+%define		_javalibdir	%{_datadir}/java
+%define		xsl_path	%{_datadir}/sgml/docbook/xsl-stylesheets
+%define		catalog		%{xsl_path}/catalog.xml
 
 %description
 Highly customizable XSL stylesheets for DocBook XML DTD. The
@@ -66,8 +66,6 @@ Rozszerzenia DocBook Saxon.
 
 %prep
 %setup -q -n docbook-xsl-%{version} -b1
-
-unzip ChangeHistory.xml.zip
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -113,7 +111,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc doc AUTHORS BUGS COPYING ChangeHistory.xml NEWS README RELEASE-NOTES.{html,txt} TODO
+%doc doc AUTHORS BUGS COPYING NEWS README RELEASE-NOTES.{html,txt} TODO
 %{xsl_path}
 
 %files xalan-extensions
