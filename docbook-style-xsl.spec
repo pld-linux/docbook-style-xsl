@@ -2,26 +2,26 @@ Summary:	Norman Walsh's modular stylesheets for DocBook
 Summary(pl.UTF-8):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR.UTF-8):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
-Version:	1.76.0
+Version:	1.76.1
 Release:	1
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
-Source0:	http://dl.sourceforge.net/docbook/docbook-xsl-%{version}.tar.bz2
-# Source0-md5:	6413843525fcaa7f58e4bd30d5192270
-Source1:	http://dl.sourceforge.net/docbook/docbook-xsl-doc-%{version}.tar.bz2
-# Source1-md5:	70244c040b330a9edcd55ea7f0e32fa8
+Source0:	http://downloads.sourceforge.net/docbook/docbook-xsl-%{version}.tar.bz2
+# Source0-md5:	b5340507cb240cc7ce00632b9c40bff5
+Source1:	http://downloads.sourceforge.net/docbook/docbook-xsl-doc-%{version}.tar.bz2
+# Source1-md5:	200b1047cdbfb87cfc49b3f841513a21
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 BuildRequires:	libxml2-progs
 BuildRequires:	unzip
-Requires(post,postun):	/usr/bin/xmlcatalog
 Requires(post,postun):	/etc/xml/catalog
+Requires(post,postun):	/usr/bin/xmlcatalog
 # workaround for rpm/poldek
-Requires:	libxml2-progs
 Requires:	/etc/xml/catalog
+Requires:	libxml2-progs
 Requires:	sgml-common >= 0.5
-AutoReqProv:	no
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+AutoReqProv:	no
 
 %define		_javalibdir	%{_datadir}/java
 %define		xsl_path	%{_datadir}/sgml/docbook/xsl-stylesheets
@@ -44,7 +44,7 @@ Stylesheets modulares do Norman Walsh para DocBook.
 Summary:	DocBook Xalan extensions
 Summary(pl.UTF-8):	Rozszerzenia DocBook Xalan
 Group:		Applications/Publishing/XML
-Requires:	xalan-j
+Requires:	java-xalan
 
 %description xalan-extensions
 DocBook Xalan extensions.
@@ -100,7 +100,7 @@ if [ -L %{xsl_path} ] ; then
 fi
 
 %post
-if ! grep -q %{catalog} /etc/xml/catalog ; then
+if ! grep -q %{catalog} %{_sysconfdir}/xml/catalog ; then
 	%xmlcat_add %{catalog}
 fi
 
