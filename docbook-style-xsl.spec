@@ -1,3 +1,8 @@
+# TODO: unpackaged files:
+#    /usr/share/java/lucene-analyzers-3.0.0.jar
+#    /usr/share/java/lucene-core-3.0.0.jar
+#    /usr/share/java/webhelpindexer.jar
+# (all as webhelpidexer-externsions? -n java-webhelpindexer? use java-lucene.spec after upgrade?)
 Summary:	Norman Walsh's modular stylesheets for DocBook
 Summary(pl.UTF-8):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR.UTF-8):	Stylesheets modulares do Norman Walsh para DocBook
