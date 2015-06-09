@@ -8,14 +8,14 @@ Summary:	Norman Walsh's modular stylesheets for DocBook
 Summary(pl.UTF-8):	Arkusze stylistyczne XSL dla DocBook DTD
 Summary(pt_BR.UTF-8):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
-Version:	1.77.1
+Version:	1.78.1
 Release:	1
 License:	(C) 1997, 1998 Norman Walsh (Free)
 Group:		Applications/Publishing/XML
 Source0:	http://downloads.sourceforge.net/docbook/docbook-xsl-%{version}.tar.bz2
-# Source0-md5:	a88dbdc0cd74702656083b6e4e4241d8
+# Source0-md5:	6dd0f89131cc35bf4f2ed105a1c17771
 Source1:	http://downloads.sourceforge.net/docbook/docbook-xsl-doc-%{version}.tar.bz2
-# Source1-md5:	070c32cc7dc3909fcc7c0fe35c2ff30a
+# Source1-md5:	77b63a06db2db2b692dcb96c2c64dc45
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 BuildRequires:	libxml2-progs
 BuildRequires:	unzip
@@ -87,14 +87,15 @@ install extensions/*.jar $RPM_BUILD_ROOT%{_javalibdir}
 %xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl/%{version} file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
 %xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl/current file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
 
-rm -rf $RPM_BUILD_ROOT%{xsl_path}/doc \
+%{__rm} -r $RPM_BUILD_ROOT%{xsl_path}/doc \
+	$RPM_BUILD_ROOT%{xsl_path}/AUTHORS \
 	$RPM_BUILD_ROOT%{xsl_path}/BUGS \
-	$RPM_BUILD_ROOT%{xsl_path}/ChangeLog \
+	$RPM_BUILD_ROOT%{xsl_path}/COPYING \
+	$RPM_BUILD_ROOT%{xsl_path}/INSTALL \
+	$RPM_BUILD_ROOT%{xsl_path}/NEWS* \
 	$RPM_BUILD_ROOT%{xsl_path}/README \
-	$RPM_BUILD_ROOT%{xsl_path}/RELEASE-NOTES.html \
-	$RPM_BUILD_ROOT%{xsl_path}/RELEASE-NOTES.xml \
+	$RPM_BUILD_ROOT%{xsl_path}/RELEASE-NOTES* \
 	$RPM_BUILD_ROOT%{xsl_path}/TODO \
-	$RPM_BUILD_ROOT%{xsl_path}/WhatsNew \
 	$RPM_BUILD_ROOT%{xsl_path}/extensions
 
 %clean
