@@ -5,7 +5,7 @@
 #    /usr/share/java/webhelpindexer.jar
 # (all as webhelpidexer-externsions? -n java-webhelpindexer? use java-lucene.spec after upgrade?)
 Summary:	Norman Walsh's modular stylesheets for DocBook
-Summary(pl.UTF-8):	Arkusze stylistyczne XSL dla DocBook DTD
+Summary(pl.UTF-8):	Arkusze stylów XSL dla DocBooka
 Summary(pt_BR.UTF-8):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
 Version:	1.78.1
@@ -39,12 +39,23 @@ stylesheets allow to produce documents in XSL FO, HTML or XHTML
 formats.
 
 %description -l pl.UTF-8
-Konfigurowalne arkusze stylistyczne dla DocBook XML DTD. Arkusze
-stylistyczne, zawarte w tym pakiecie, umożliwiają tworzenie dokumentów
-w formacie XSL FO, HTML lub XHTML.
+Konfigurowalne arkusze stylów dla DocBook XML DTD. Arkusze stylów,
+zawarte w tym pakiecie, umożliwiają tworzenie dokumentów w formacie
+XSL FO, HTML lub XHTML.
 
 %description -l pt_BR.UTF-8
 Stylesheets modulares do Norman Walsh para DocBook.
+
+%package doc
+Summary:	Documentation for DocBook XSL stylesheets
+Summary(pl.UTF-8):	Dokumentacja do arkuszy stylów DocBook XSL
+Group:		Documentation
+
+%description doc
+Documentation for DocBook XSL stylesheets.
+
+%description doc -l pl.UTF-8
+Dokumentacja do arkuszy stylów DocBook XSL.
 
 %package xalan-extensions
 Summary:	DocBook Xalan extensions
@@ -78,25 +89,15 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{xsl_path},%{_sysconfdir}/xml} \
 	$RPM_BUILD_ROOT%{_javalibdir}
 
-cp -a * $RPM_BUILD_ROOT%{xsl_path}
+cp -a $(find . -mindepth 1 -maxdepth 1 -type d -a ! -name extensions) $RPM_BUILD_ROOT%{xsl_path}
+cp -p VERSION.xsl $RPM_BUILD_ROOT%{xsl_path}
 
-install extensions/*.jar $RPM_BUILD_ROOT%{_javalibdir}
+cp -p extensions/*.jar $RPM_BUILD_ROOT%{_javalibdir}
 
 %xmlcat_create $RPM_BUILD_ROOT%{catalog}
 
 %xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl/%{version} file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
 %xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl/current file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
-
-%{__rm} -r $RPM_BUILD_ROOT%{xsl_path}/doc \
-	$RPM_BUILD_ROOT%{xsl_path}/AUTHORS \
-	$RPM_BUILD_ROOT%{xsl_path}/BUGS \
-	$RPM_BUILD_ROOT%{xsl_path}/COPYING \
-	$RPM_BUILD_ROOT%{xsl_path}/INSTALL \
-	$RPM_BUILD_ROOT%{xsl_path}/NEWS* \
-	$RPM_BUILD_ROOT%{xsl_path}/README \
-	$RPM_BUILD_ROOT%{xsl_path}/RELEASE-NOTES* \
-	$RPM_BUILD_ROOT%{xsl_path}/TODO \
-	$RPM_BUILD_ROOT%{xsl_path}/extensions
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -118,8 +119,12 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc doc AUTHORS BUGS COPYING NEWS README RELEASE-NOTES.{html,txt} TODO
+%doc AUTHORS BUGS COPYING NEWS README RELEASE-NOTES.{html,txt} TODO
 %{xsl_path}
+
+%files doc
+%defattr(644,root,root,755)
+%doc doc/*
 
 %files xalan-extensions
 %defattr(644,root,root,755)
