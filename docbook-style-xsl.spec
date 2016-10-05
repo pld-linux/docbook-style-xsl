@@ -8,17 +8,18 @@ Summary:	Norman Walsh's modular stylesheets for DocBook
 Summary(pl.UTF-8):	Arkusze stylów XSL dla DocBooka
 Summary(pt_BR.UTF-8):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
-Version:	1.79.0
+Version:	1.79.1
 Release:	1
-License:	(C) 1997, 1998 Norman Walsh (Free)
+License:	MIT-like
 Group:		Applications/Publishing/XML
 Source0:	http://downloads.sourceforge.net/docbook/docbook-xsl-%{version}.tar.bz2
-# Source0-md5:	7a55c875fe0e5f67991c662bf6715603
+# Source0-md5:	b48cbf929a2ad85e6672f710777ca7bc
 Source1:	http://downloads.sourceforge.net/docbook/docbook-xsl-doc-%{version}.tar.bz2
-# Source1-md5:	d1fb7ef57a3e138859e53ba516843316
+# Source1-md5:	7eb51958e1bf97f3c5b013c42eb61e31
 URL:		http://docbook.sourceforge.net/projects/xsl/index.html
 BuildRequires:	libxml2-progs
 BuildRequires:	unzip
+AutoReqProv:	no
 Requires(post,postun):	/etc/xml/catalog
 Requires(post,postun):	/usr/bin/xmlcatalog
 # workaround for rpm/poldek
@@ -27,7 +28,6 @@ Requires:	libxml2-progs
 Requires:	sgml-common >= 0.5
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-AutoReqProv:	no
 
 %define		_javalibdir	%{_datadir}/java
 %define		xsl_path	%{_datadir}/sgml/docbook/xsl-stylesheets
