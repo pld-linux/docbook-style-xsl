@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Arkusze stylów XSL dla DocBooka
 Summary(pt_BR.UTF-8):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
 Version:	1.79.2
-Release:	4
+Release:	3
 License:	MIT-like
 Group:		Applications/Publishing/XML
 #Source0Download: https://github.com/docbook/xslt10-stylesheets/releases
@@ -108,8 +108,6 @@ cp -p extensions/*.jar $RPM_BUILD_ROOT%{_javalibdir}
 # backward compat
 %xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl-ns/%{version} file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
 %xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl-ns/current file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
-%xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl/%{version} file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
-%xmlcat_add_rewrite http://docbook.sourceforge.net/release/xsl/current file://%{xsl_path} $RPM_BUILD_ROOT%{catalog}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
