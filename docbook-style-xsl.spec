@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Arkusze stylów XSL dla DocBooka
 Summary(pt_BR.UTF-8):	Stylesheets modulares do Norman Walsh para DocBook
 Name:		docbook-style-xsl
 Version:	1.79.2
-Release:	3
+Release:	5
 License:	MIT-like
 Group:		Applications/Publishing/XML
 #Source0Download: https://github.com/docbook/xslt10-stylesheets/releases
