@@ -89,7 +89,7 @@ Rozszerzenia DocBook Saxon.
 
 %prep
 %setup -q -n docbook-xsl-%{version} -b1
-%patch0 -p2
+%patch -P0 -p2
 
 %{__sed} -i -e '1s,/usr/bin/env ruby,%{__ruby},' epub/bin/dbtoepub
 
